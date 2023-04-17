@@ -10,7 +10,7 @@ exports.GetAllUser = async (req, res) => {
                     id: value._id,
                     name: value.name,
                     email: value.email,
-                    role: value.user,
+                    role: value.role,
                     date_created: new Date(value.date_created).toDateString()
                 })),
                 message: "List User Successfully",
@@ -18,7 +18,7 @@ exports.GetAllUser = async (req, res) => {
             })
         })
     } catch(err) {
-        res.status(400).json({
+        return await res.status(400).json({
             message: `Something Went Error With message ${err}`,
             status: false
         });
@@ -55,7 +55,7 @@ exports.GetDetailUser = async (req, res) => {
     }
 }
 
-exports.createUser = async (req, res) => {
+exports.CreateUser = async (req, res) => {
     try {
         let data = req.body;
         data.date_created = new Date();
@@ -77,5 +77,24 @@ exports.createUser = async (req, res) => {
             message: `Something Went Error With message ${err}`,
             status: false
         });
+    }
+}
+
+exports.UpdateUser = async (req, res) => {
+    try { 
+        let data = req.body;
+    } catch (err) {
+        res.status(422).send({
+            message: `Something went error with message ${err}`,
+            status: false 
+        });
+    }
+}
+
+exports.DeleteUser = async (req, res) => {
+    try {
+        console.log('delete user')
+    } catch (err) {
+        console.log(err)
     }
 }
